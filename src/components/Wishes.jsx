@@ -125,75 +125,86 @@ const Wishes = () => {
         }}
       >
         {/* Milky Way Background */}
-        <Box sx={{
-          position: 'absolute',
-          width: '200%',
-          height: '200%',
-          background: 'radial-gradient(ellipse at center, rgba(12,20,69,0.3) 0%, rgba(0,0,0,0) 70%)',
-          animation: `${galaxyFlow} 500s linear infinite`,
-          zIndex: 0
-        }}>
+        <Box
+          sx={{
+            position: 'absolute',
+            width: '200%',
+            height: '200%',
+            background:
+              'radial-gradient(ellipse at center, rgba(12,20,69,0.3) 0%, rgba(0,0,0,0) 70%)',
+            animation: `${galaxyFlow} 500s linear infinite`,
+            zIndex: 0,
+          }}
+        >
           {milkyWayStars}
         </Box>
 
         {/* Falling Stars */}
-        <Box sx={{ 
-          position: 'absolute', 
-          width: '100%', 
-          height: '100%',
-          overflow: 'hidden',
-        }}>
-          {Array(15).fill(0).map((_, i) => (
-            <Box
-              key={`star-${i}`}
-              sx={{
-                position: 'absolute',
-                width: 2,
-                height: 2,
-                backgroundColor: 'white',
-                borderRadius: '50%',
-                left: `${Math.random() * 100}%`,
-                top: -10,
-                animation: `${fallingStar} ${Math.random() * 3 + 2}s linear infinite`,
-                animationDelay: `${Math.random() * 5}s`,
-                '&:before': {
-                  content: '""',
-                  position: 'absolute',
-                  width: '100px',
-                  height: '1px',
-                  background: 'linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%)',
-                  transformOrigin: 'left center',
-                  transform: 'rotate(-45deg)',
-                  left: 0,
-                  top: '50%',
-                }
-              }}
-            />
-          ))}
+        <Box
+          sx={{
+            position: 'absolute',
+            width: '100%',
+            height: '100%',
+            overflow: 'hidden',
+          }}
+        >
+          {Array(15)
+            .fill(0)
+            .map((_, i) => (
+              <Box
+                key={`star-${i}`}
+                sx={{
+                  'position': 'absolute',
+                  'width': 2,
+                  'height': 2,
+                  'backgroundColor': 'white',
+                  'borderRadius': '50%',
+                  'left': `${Math.random() * 100}%`,
+                  'top': -10,
+                  'animation': `${fallingStar} ${
+                    Math.random() * 3 + 2
+                  }s linear infinite`,
+                  'animationDelay': `${Math.random() * 5}s`,
+                  '&:before': {
+                    content: '""',
+                    position: 'absolute',
+                    width: '100px',
+                    height: '1px',
+                    background:
+                      'linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%)',
+                    transformOrigin: 'left center',
+                    transform: 'rotate(-45deg)',
+                    left: 0,
+                    top: '50%',
+                  },
+                }}
+              />
+            ))}
         </Box>
 
         {/* Realistic Moon */}
         <Box
           sx={{
-            position: 'absolute',
-            top: { xs: '30px', md: '50px' },
-            right: { xs: '30px', md: '50px' },
-            width: { xs: '100px', md: '150px' },
-            height: { xs: '100px', md: '150px' },
-            borderRadius: '50%',
-            background: 'linear-gradient(145deg, #e6e6e6 0%, #b8b8b8 100%)',
-            boxShadow: '0 0 30px rgba(255, 255, 210, 0.4)',
-            animation: `${moonPulse} 8s ease-in-out infinite`,
-            zIndex: 1,
-            overflow: 'hidden',
+            'position': 'absolute',
+            'top': { xs: '30px', md: '50px' },
+            'right': { xs: '30px', md: '50px' },
+            'width': { xs: '100px', md: '150px' },
+            'height': { xs: '100px', md: '150px' },
+            'borderRadius': '50%',
+            'background': 'linear-gradient(145deg, #e6e6e6 0%, #b8b8b8 100%)',
+            'boxShadow': '0 0 30px rgba(255, 255, 210, 0.4)',
+            'animation': `${moonPulse} 8s ease-in-out infinite`,
+            'zIndex': 1,
+            'overflow': 'hidden',
             '&:before': {
               content: '""',
               position: 'absolute',
               width: '100%',
               height: '100%',
-              background: 'radial-gradient(circle at 30% 30%, rgba(0,0,0,0) 40%, rgba(0,0,0,0.3) 100%)',
-              borderRadius: '50%'
-            }
+              background:
+                'radial-gradient(circle at 30% 30%, rgba(0,0,0,0) 40%, rgba(0,0,0,0.3) 100%)',
+              borderRadius: '50%',
+            },
           }}
         >
           {/* Moon Craters */}
@@ -201,14 +212,24 @@ const Wishes = () => {
             <Box
               key={`crater-${index}`}
               sx={{
-                position: 'absolute',
-                width: crater.size,
-                height: crater.size,
-                borderRadius: '50%',
-                background: `radial-gradient(circle, #a0a0a0 0%, #${Math.floor(128 - (128 * crater.depth)).toString(16).padStart(2, '0')}${Math.floor(128 - (128 * crater.depth)).toString(16).padStart(2, '0')}${Math.floor(128 - (128 * crater.depth)).toString(16).padStart(2, '0')} 100%)`,
-                boxShadow: `inset ${crater.depth * 2}px ${crater.depth * 2}px ${crater.depth * 4}px rgba(0,0,0,0.5)`,
-                top: crater.top,
-                left: crater.left,
+                'position': 'absolute',
+                'width': crater.size,
+                'height': crater.size,
+                'borderRadius': '50%',
+                'background': `radial-gradient(circle, #a0a0a0 0%, #${Math.floor(
+                  128 - 128 * crater.depth
+                )
+                  .toString(16)
+                  .padStart(2, '0')}${Math.floor(128 - 128 * crater.depth)
+                  .toString(16)
+                  .padStart(2, '0')}${Math.floor(128 - 128 * crater.depth)
+                  .toString(16)
+                  .padStart(2, '0')} 100%)`,
+                'boxShadow': `inset ${crater.depth * 2}px ${
+                  crater.depth * 2
+                }px ${crater.depth * 4}px rgba(0,0,0,0.5)`,
+                'top': crater.top,
+                'left': crater.left,
                 '&:after': {
                   content: '""',
                   position: 'absolute',
@@ -217,8 +238,8 @@ const Wishes = () => {
                   borderRadius: '50%',
                   background: 'rgba(255,255,255,0.2)',
                   top: '20%',
-                  left: '20%'
-                }
+                  left: '20%',
+                },
               }}
             />
           ))}
@@ -240,50 +261,58 @@ const Wishes = () => {
           }}
         >
           <Grid container spacing={4} sx={{ margin: 0 }}>
-            <Grid item size={{xs:12, md:6}} sx={{ 
-              padding: '0 !important',
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              animation: `${fadeIn} 1s ease-out`,
-            }}>
-              <Box 
-                sx={{ 
-                  width: '100%',
-                  display: 'flex',
-                  justifyContent: 'center',
-                  backgroundColor: '#f0f0f0',
-                  padding: 2,
-                  boxSizing: 'border-box',
-                  borderRadius: '8px',
-                  boxShadow: '0 4px 20px rgba(0,0,0,0.2)',
+            <Grid
+              item
+              size={{ xs: 12, md: 6 }}
+              sx={{
+                padding: '0 !important',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                animation: `${fadeIn} 1s ease-out`,
+              }}
+            >
+              <Box
+                sx={{
+                  'width': '100%',
+                  'display': 'flex',
+                  'justifyContent': 'center',
+                  'backgroundColor': '#f0f0f0',
+                  'padding': 2,
+                  'boxSizing': 'border-box',
+                  'borderRadius': '8px',
+                  'boxShadow': '0 4px 20px rgba(0,0,0,0.2)',
                   '&:hover': {
                     transform: 'scale(1.02)',
                     transition: 'transform 0.3s ease',
-                  }
+                  },
                 }}
               >
-                <img 
-                  src="../../public/images/ghibli1.jpeg" 
-                  alt="Birthday" 
-                  style={{ 
-                    width: '100%', 
+                <img
+                  src="/images/ghibli1.jpeg"
+                  alt="Birthday"
+                  style={{
+                    width: '100%',
                     maxWidth: '400px',
                     height: 'auto',
                     objectFit: 'contain',
                     borderRadius: '4px',
                     animation: `${floatAnimation} 3s ease-in-out infinite`,
-                  }} 
+                  }}
                 />
               </Box>
             </Grid>
-            <Grid item size={{xs:12, md:6}} sx={{ 
-              padding: '0 !important',
-              display: 'flex',
-              alignItems: 'center',
-            }}>
-              <Box 
-                sx={{ 
+            <Grid
+              item
+              size={{ xs: 12, md: 6 }}
+              sx={{
+                padding: '0 !important',
+                display: 'flex',
+                alignItems: 'center',
+              }}
+            >
+              <Box
+                sx={{
                   width: '100%',
                   padding: 4,
                   height: '100%',
@@ -294,8 +323,8 @@ const Wishes = () => {
                   animation: `${fadeIn} 0.8s ease-out 0.2s both`,
                 }}
               >
-                <Typography 
-                  variant="h4" 
+                <Typography
+                  variant="h4"
                   gutterBottom
                   sx={{
                     fontFamily: '"Ancizar Serif", serif',
@@ -311,14 +340,15 @@ const Wishes = () => {
                 >
                   Happy Birthday Pritoo! 🎉💖
                 </Typography>
-                
+
                 {[
-                  "This year, may you complete everything on your bucket list—if not all, at least 50%! 😉",
+                  'This year, may you complete everything on your bucket list—if not all, at least 50%! 😉',
                   "May you achieve all your goals with lots of fun, laughter, and excitement. Let this be the year—the one that makes you say, 'Yes, this is the best year of my life!'",
-                  "May you forget what sadness and tears even feel like, because happiness is all around you now. 💫",
-                  "That's my special wish for you—straight from the heart. Enjoy your day, Pritoo! 🥳🌸💐"
+                  'May you forget what sadness and tears even feel like, because happiness is all around you now. 💫',
+                  "That's my special wish for you—straight from the heart. Enjoy your day, Pritoo! 🥳🌸💐",
+                  'Again...... Wish You Many Many Happy Returns Of The Day.🎂❤️💖',
                 ].map((text, index) => (
-                  <Typography 
+                  <Typography
                     key={index}
                     paragraph
                     sx={{
@@ -328,7 +358,9 @@ const Wishes = () => {
                       fontSize: '1.1rem',
                       lineHeight: '1.6',
                       color: '#333',
-                      animation: `${fadeIn} 0.5s ease-out ${index * 0.2 + 0.5}s both`,
+                      animation: `${fadeIn} 0.5s ease-out ${
+                        index * 0.2 + 0.5
+                      }s both`,
                       marginBottom: '1rem',
                     }}
                   >

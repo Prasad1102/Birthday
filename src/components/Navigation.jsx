@@ -1,157 +1,160 @@
 import * as React from 'react';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import Menu from '@mui/material/Menu';
+import { Link } from 'react-router-dom';
+import {
+  AppBar,
+  Box,
+  Toolbar,
+  IconButton,
+  Typography,
+  Menu,
+  MenuItem,
+  Button,
+  Avatar,
+} from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
-import Container from '@mui/material/Container';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
-import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
 
-import { Link } from 'react-router-dom'; // ✅ Import Link
-
-// Route-compatible page names & paths
 const pages = [
   { name: 'Wishes', path: '/wishes' },
+  { name: 'Moments', path: '/moments' },
   { name: 'Memory Lane', path: '/memory' },
-  { name: 'Moments', path: '/moments' }
 ];
-
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function Navigation() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
-  };
-  const handleOpenUserMenu = (event) => {
-    setAnchorElUser(event.currentTarget);
   };
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
 
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
-  };
-
   return (
-    <AppBar position="static">
-      <Container maxWidth="xl">
-        <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
-          <Typography
-            variant="h6"
-            noWrap
-            component={Link}
-            to="/"
+    <AppBar
+      position="static"
+      sx={{
+        background:
+          'linear-gradient(90deg, #0F2027 0%, #203A43 50%, #2C5364 100%)',
+        boxShadow: '0 4px 20px rgba(0, 0, 0, 0.3)',
+        backdropFilter: 'blur(10px)',
+        borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
+      }}
+    >
+      <Toolbar disableGutters sx={{ px: 3 }}>
+        {/* Desktop Avatar (left) */}
+        <Avatar
+          alt="Profile"
+          src="/images/MemoryLane/img14.jpeg"
+          component={Link}
+          to="/"
+          sx={{
+            width: 40,
+            height: 40,
+            mr: 2,
+            display: { xs: 'none', md: 'flex' },
+            border: '2px solid rgba(255, 255, 255, 0.2)',
+          }}
+        />
+
+        {/* Mobile Menu Button (left - replaces avatar) */}
+        <Box
+          sx={{
+            display: { xs: 'flex', md: 'none' },
+            mr: 2,
+          }}
+        >
+          <IconButton size="large" onClick={handleOpenNavMenu} color="inherit">
+            <MenuIcon />
+          </IconButton>
+          <Menu
+            anchorEl={anchorElNav}
+            open={Boolean(anchorElNav)}
+            onClose={handleCloseNavMenu}
             sx={{
-              mr: 2,
-              display: { xs: 'none', md: 'flex' },
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
+              '& .MuiPaper-root': {
+                background: 'linear-gradient(135deg, #0F2027 0%, #203A43 100%)',
+                border: '1px solid rgba(255, 255, 255, 0.1)',
+              },
             }}
           >
-            LOGO
-          </Typography>
-
-          {/* Mobile Menu */}
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-            <IconButton size="large" onClick={handleOpenNavMenu} color="inherit">
-              <MenuIcon />
-            </IconButton>
-            <Menu
-              anchorEl={anchorElNav}
-              anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
-              transformOrigin={{ vertical: 'top', horizontal: 'left' }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
-            >
-              {pages.map((page) => (
-                <MenuItem key={page.name} onClick={handleCloseNavMenu}>
-                  <Typography
-                    component={Link}
-                    to={page.path}
-                    sx={{ textDecoration: 'none', color: 'inherit' }}
-                  >
-                    {page.name}
-                  </Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box>
-
-          {/* Desktop Title (Mobile fallback) */}
-          <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
-          <Typography
-            variant="h5"
-            noWrap
-            component={Link}
-            to="/"
-            sx={{
-              mr: 2,
-              display: { xs: 'flex', md: 'none' },
-              flexGrow: 1,
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          >
-            LOGO
-          </Typography>
-
-          {/* Desktop Menu */}
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
-              <Button
-                key={page.name}
-                component={Link}
-                to={page.path}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
-              >
-                {page.name}
-              </Button>
+              <MenuItem key={page.name} onClick={handleCloseNavMenu}>
+                <Typography
+                  component={Link}
+                  to={page.path}
+                  sx={{
+                    textDecoration: 'none',
+                    color: 'white',
+                    width: '100%',
+                  }}
+                >
+                  {page.name}
+                </Typography>
+              </MenuItem>
             ))}
-          </Box>
+          </Menu>
+        </Box>
 
-          {/* User Avatar Menu */}
-          <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-              </IconButton>
-            </Tooltip>
-            <Menu
-              sx={{ mt: '45px' }}
-              anchorEl={anchorElUser}
-              anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-              transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
+        {/* Title (centered on mobile, normal on desktop) */}
+        <Typography
+          variant="h6"
+          noWrap
+          component={Link}
+          to="/"
+          sx={{
+            flexGrow: { xs: 1, md: 0 }, // Takes space on mobile only
+            mr: { xs: 0, md: 2 },
+            display: 'flex',
+            fontFamily: 'monospace',
+            fontWeight: 700,
+            letterSpacing: '.2rem',
+            color: 'white',
+            textDecoration: 'none',
+            textShadow: '0 0 10px rgba(255,255,255,0.3)',
+            justifyContent: { xs: 'center', md: 'flex-start' },
+          }}
+        >
+          PREET
+        </Typography>
+
+        {/* Desktop Navigation Links (hidden on mobile) */}
+        <Box
+          sx={{
+            flexGrow: 1,
+            display: { xs: 'none', md: 'flex' },
+            ml: 3,
+            gap: 1,
+          }}
+        >
+          {pages.map((page) => (
+            <Button
+              key={page.name}
+              component={Link}
+              to={page.path}
+              sx={{
+                'color': 'white',
+                '&:hover': {
+                  background: 'rgba(255, 255, 255, 0.1)',
+                },
+              }}
             >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box>
-        </Toolbar>
-      </Container>
+              {page.name}
+            </Button>
+          ))}
+        </Box>
+
+        {/* Profile Avatar (right - always visible) */}
+        <Avatar
+          alt="Profile"
+          src="/images/DP.jpeg"
+          sx={{
+            width: 40,
+            height: 40,
+            border: '2px solid rgba(255, 255, 255, 0.2)',
+          }}
+        />
+      </Toolbar>
     </AppBar>
   );
 }
