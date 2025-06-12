@@ -4,10 +4,12 @@ import MemoryLane from './components/MemoryLane';
 import Moments from './components/Moments';
 import Navigation from './components/Navigation';
 import Wishes from './components/Wishes';
+import usePageTracking from './components/usePageTracking';
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
+  usePageTracking();
   return (
     <Router>
       <Navigation />
