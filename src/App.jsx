@@ -9,9 +9,9 @@ import usePageTracking from './components/usePageTracking';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
-  usePageTracking();
   return (
     <Router>
+      <PageTracker />
       <Navigation />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -21,6 +21,12 @@ function App() {
       </Routes>
     </Router>
   );
+}
+
+// Component that uses the tracking hook (because hooks can't run outside Router)
+function PageTracker() {
+  usePageTracking();
+  return null;
 }
 
 export default App;
