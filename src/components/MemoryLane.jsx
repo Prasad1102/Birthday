@@ -1003,6 +1003,13 @@ const mediaData = [
     cols: 1,
     rows: 2,
   },
+  {
+    id: 97,
+    type: 'image',
+    mediaUrl: '/images/MemoryLane/pritee.jpg',
+    cols: 1,
+    rows: 2,
+  },
 ];
 
 export default MemoryLane;
